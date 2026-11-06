@@ -1270,18 +1270,18 @@ function App() {
     const encoded = encodeURIComponent(query);
     const urls = {
       amazon: `https://www.amazon.com.br/s?k=${encoded}`,
-      kabum: `https://www.kabum.com.br/busca/${encoded}`,
-      pichau: `https://www.pichau.com.br/busca`,
-      terabyte: `https://www.terabyteshop.com.br/busca?str=${encoded}`
+      mercadolivre: `https://lista.mercadolivre.com.br/${query
+        .trim()
+        .split(/\s+/)
+        .map(encodeURIComponent)
+        .join("-")}`
     };
     return urls[store] || amazonUrl(query);
   };
 
   const stores = [
     { id: "amazon", name: "Amazon Brasil", note: "Pesquisar na Amazon", color: "#F59E0B" },
-    { id: "kabum", name: "KaBuM!", note: "Pesquisar no KaBuM!", color: "#A3E635" },
-    { id: "pichau", name: "Pichau", note: "Pesquisar na Pichau", color: "#F97316" },
-    { id: "terabyte", name: "TerabyteShop", note: "Pesquisar na Terabyte", color: "#38BDF8" }
+    { id: "mercadolivre", name: "Mercado Livre", note: "Pesquisar no Mercado Livre", color: "#FFE600" }
   ];
 
   const navigate = id => {
@@ -1942,7 +1942,7 @@ function App() {
               <h2>5. Links e serviços de terceiros</h2>
               <p>
                 O site pode apresentar links para lojas e serviços externos,
-                como Amazon, KaBuM!, Pichau e TerabyteShop, além de recursos
+                como Amazon e Mercado Livre, além de recursos
                 fornecidos por terceiros. Ao acessar esses serviços, você
                 estará sujeito às políticas de privacidade de cada fornecedor.
               </p>
