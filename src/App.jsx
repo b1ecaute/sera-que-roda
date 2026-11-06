@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import "./index.css";
 
 // ======================================================
-// BANCO DE JOGOS
+// BANCO DE JOGOS (Corrigido sem duplicadas e com IDs limpos)
 // ======================================================
 
 const gameData = [
@@ -99,7 +99,7 @@ const gameData = [
   ["Monster Hunter: World", "RPG", "GTX 1060", 8, 0.9, "582010"],
   ["Monster Hunter Wilds", "RPG", "RTX 3060", 16, 1.7, "2246340"],
   ["Dragon's Dogma 2", "RPG", "RTX 2060", 16, 1.5, "2054970"],
-  ["Diablo II: Resurrected", "RPG", "GTX 960", 8, 0.7, "1222670"],
+  ["Diablo II: Resurrected", "RPG", "GTX 960", 8, 0.7, 0],
   ["Civilization VI", "Estratégia", "GT 730", 4, 0.4, "289070"],
   ["Age of Empires II: Definitive Edition", "Estratégia", "GT 730", 4, 0.4, "813780"],
   ["Age of Empires IV", "Estratégia", "GTX 750 Ti", 8, 0.65, "1466860"],
@@ -118,9 +118,7 @@ const gameData = [
   ["Garry's Mod", "Leve", "GT 710", 4, 0.2, "4000"],
   ["Don't Starve Together", "Leve", "GT 710", 4, 0.15, "322330"],
   ["The Binding of Isaac: Rebirth", "Leve", "GT 710", 4, 0.12, "250900"],
-  ["Cuphead", "Leve", "GT 710", 4, 0.2, "268910"],
   ["Unturned", "Leve", "GT 730", 4, 0.25, "304930"],
-  ["Brawlhalla", "Leve", "GT 710", 4, 0.15, "291550"],
 
   ["Grand Theft Auto VI", "Lançamentos", "A definir", 0, null, 0, "Em breve"],
   ["The Witcher IV", "Lançamentos", "A definir", 0, null, 0, "Em breve"],
@@ -139,7 +137,7 @@ const games = gameData.map(
     weight,
     upcoming: status === "Em breve",
     status,
-    image: steamId
+    image: steamId && steamId !== 0
       ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${steamId}/header.jpg`
       : `https://placehold.co/600x338/151c2b/ffffff?text=${encodeURIComponent(name)}`
   })
@@ -423,9 +421,6 @@ function SectionTitle({ eyebrow, title, description }) {
   );
 }
 
-// Espaços reservados para anúncios.
-// Ainda não são anúncios reais do Google AdSense.
-
 function AdSlot({ label = "Espaço reservado para anúncio" }) {
   return (
     <div
@@ -460,8 +455,6 @@ function AdSlot({ label = "Espaço reservado para anúncio" }) {
     </div>
   );
 }
-
-// Impede que as requisições do teste fiquem travadas indefinidamente.
 
 async function fetchWithTimeout(url, options = {}, timeoutMs = 15000) {
   const controller = new AbortController();
@@ -532,7 +525,6 @@ function InternetTest() {
   };
 
   const getRank = (data) => {
-    // Não classifica uma medição incompleta como excelente.
     if (data.ping === null || data.jitter === null) {
       return {
         name: "INCOMPLETO",
@@ -755,7 +747,7 @@ function InternetTest() {
       : "CONEXÃO INSTÁVEL"
     : "AGUARDANDO TESTE";
 
-  const games = result ? getGames(result) : [];
+  const gamesList = result ? getGames(result) : [];
 
   const speed = result
     ? Math.min(result.download, 1000)
@@ -1108,7 +1100,7 @@ function InternetTest() {
               Avaliação indicativa baseada em latência, jitter e falhas de teste.
             </p>
 
-            {games.map(item => (
+            {gamesList.map(item => (
               <div className="cyber-game" key={item.name}>
                 <div>
                   <strong style={{ color: "#E2E8F0", fontSize: 13 }}>
@@ -1257,15 +1249,16 @@ function App() {
   const selectedCpu = cpus.find(item => item.name === cpu) || cpus[0];
   const selectedGame = games.find(item => item.name === game);
 
+  // FÓRMULA CORRIGIDA: O peso do jogo agora divide corretamente a pontuação do hardware
   const fps = selectedGame && !selectedGame.upcoming
     ? Math.max(
         5,
         Math.round(
-          Math.min(selectedGpu.score, selectedCpu.score * 1.25) *
+          (Math.min(selectedGpu.score, selectedCpu.score * 1.25) *
           (Number(ram) < 8 ? 0.65 : Number(ram) < 16 ? 0.85 : 1) *
           (resolution === "1440p" ? 0.72 : resolution === "4K" ? 0.42 : 1) *
-          (selectedGame.weight || 1) *
-          1.5
+          1.5) /
+          (selectedGame.weight || 1)
         )
       )
     : null;
@@ -1273,8 +1266,6 @@ function App() {
   const amazonUrl = query =>
     `https://www.amazon.com.br/s?k=${encodeURIComponent(query)}`;
 
-  // Links de busca das lojas. Eles ainda não são links afiliados:
-  // substitua/complete cada URL com seu rastreamento após a aprovação nos programas.
   const storeSearchUrl = (store, query) => {
     const encoded = encodeURIComponent(query);
     const urls = {
@@ -1300,7 +1291,6 @@ function App() {
     setGameStatus("Todos");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
 
   return (
     <div className="app-shell">
@@ -1628,7 +1618,6 @@ function App() {
 
         {/* TESTE DE INTERNET */}
         {page === "internet" && <InternetTest />}
-
 
         {/* MONTE SEU PC */}
         {page === "builder" && (
@@ -2053,4 +2042,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
