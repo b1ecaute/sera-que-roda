@@ -1852,7 +1852,182 @@ function App() {
           </section>
         )}
 
+        {/* SOBRE NÓS */}
+        {page === "about" && (
+          <section className="content-section page-section legal-page">
+            <SectionTitle
+              eyebrow="CONHEÇA O PROJETO"
+              title="Sobre nós"
+              description="Tecnologia e informação para ajudar você a fazer escolhas melhores no mundo gamer."
+            />
 
+            <article className="legal-card">
+              <h2>O que é o SERÁ QUE RODA?</h2>
+              <p>
+                O SERÁ QUE RODA? é um projeto criado para ajudar jogadores
+                a conhecer melhor o desempenho de seus computadores,
+                explorar jogos e encontrar componentes para montar ou
+                atualizar seus PCs.
+              </p>
+
+              <h2>O que você encontra aqui?</h2>
+              <ul>
+                <li><strong>Banco de jogos:</strong> um catálogo para pesquisar jogos e consultar informações de hardware.</li>
+                <li><strong>Teste seu PC:</strong> uma ferramenta que apresenta estimativas ilustrativas de FPS conforme as peças selecionadas.</li>
+                <li><strong>Teste de internet:</strong> medições aproximadas de ping, jitter, download e upload.</li>
+                <li><strong>Monte seu PC:</strong> uma ferramenta para selecionar componentes e pesquisar produtos em lojas externas.</li>
+              </ul>
+
+              <h2>Nosso compromisso</h2>
+              <p>
+                Nosso objetivo é oferecer informações acessíveis e facilitar
+                a pesquisa de quem gosta de tecnologia e jogos.
+                Trabalhamos para melhorar continuamente as ferramentas e
+                informações disponíveis.
+              </p>
+
+              <p className="legal-note">
+                As estimativas de desempenho não substituem benchmarks reais.
+                Compatibilidade, preços e disponibilidade devem ser conferidos
+                antes de qualquer compra.
+              </p>
+            </article>
+          </section>
+        )}
+
+        {/* POLÍTICA DE PRIVACIDADE */}
+        {page === "privacy" && (
+          <section className="content-section page-section legal-page">
+            <SectionTitle
+              eyebrow="TRANSPARÊNCIA E PROTEÇÃO DE DADOS"
+              title="Política de Privacidade"
+              description="Saiba como funciona o tratamento de informações durante o uso do SERÁ QUE RODA?."
+            />
+
+            <article className="legal-card">
+              <p><strong>Última atualização:</strong> 6 de novembro de 2026.</p>
+
+              <h2>1. Sobre esta política</h2>
+              <p>
+                Esta Política de Privacidade explica como o SERÁ QUE RODA?
+                trata informações relacionadas à navegação e à utilização
+                de suas ferramentas.
+              </p>
+
+              <h2>2. Informações e dados</h2>
+              <p>
+                O site não possui, nesta versão, um sistema próprio de cadastro
+                de usuários ou armazenamento de mensagens de contato.
+                Informações inseridas nas ferramentas são utilizadas para
+                apresentar os resultados solicitados na própria página.
+              </p>
+              <p>
+                O teste de internet utiliza serviços públicos da Cloudflare
+                para realizar medições de conexão. Esses serviços podem
+                receber informações técnicas necessárias às requisições,
+                conforme as políticas do próprio fornecedor.
+              </p>
+
+              <h2>3. Cookies e tecnologias semelhantes</h2>
+              <p>
+                O funcionamento do site e de serviços externos pode envolver
+                cookies ou tecnologias semelhantes. Caso ferramentas de
+                análise ou publicidade sejam ativadas, elas poderão utilizar
+                essas tecnologias conforme suas próprias configurações e
+                políticas.
+              </p>
+
+              <h2>4. Google Analytics e Google AdSense</h2>
+              <p>
+                O espaço reservado a anúncios no site não significa que
+                publicidade do Google esteja ativa. Caso o Google AdSense
+                ou o Google Analytics sejam implementados futuramente,
+                esta política será atualizada para explicar seu funcionamento.
+              </p>
+              <p>
+                Quando utilizados, esses serviços poderão tratar informações
+                de navegação e utilizar cookies ou tecnologias semelhantes,
+                de acordo com as políticas e configurações aplicáveis do Google.
+              </p>
+
+              <h2>5. Links e serviços de terceiros</h2>
+              <p>
+                O site pode apresentar links para lojas e serviços externos,
+                como Amazon, KaBuM!, Pichau e TerabyteShop, além de recursos
+                fornecidos por terceiros. Ao acessar esses serviços, você
+                estará sujeito às políticas de privacidade de cada fornecedor.
+              </p>
+
+              <h2>6. Segurança</h2>
+              <p>
+                Adotamos cuidados razoáveis na manutenção do site.
+                Entretanto, nenhum serviço disponível na internet pode
+                garantir segurança absoluta contra todos os riscos.
+              </p>
+
+              <h2>7. Direitos do titular dos dados</h2>
+              <p>
+                Nos termos da Lei Geral de Proteção de Dados (LGPD),
+                você pode solicitar informações sobre o tratamento de
+                dados pessoais eventualmente realizado pelo site,
+                bem como exercer os direitos previstos na legislação.
+              </p>
+
+              <h2>8. Alterações nesta política</h2>
+              <p>
+                Esta política poderá ser atualizada para refletir mudanças
+                nas funcionalidades, nos serviços utilizados ou nas
+                obrigações legais.
+              </p>
+
+              <h2>9. Contato</h2>
+              <p>
+                Para dúvidas sobre privacidade e proteção de dados,
+                entre em contato pelo e-mail:{" "}
+                <a href="mailto:seraqueroda7@gmail.com">
+                  seraqueroda7@gmail.com
+                </a>.
+              </p>
+            </article>
+          </section>
+        )}
+
+        {/* CONTATO */}
+        {page === "contact" && (
+          <section className="content-section page-section legal-page">
+            <SectionTitle
+              eyebrow="FALE CONOSCO"
+              title="Contato"
+              description="Tem alguma dúvida, sugestão ou encontrou um problema? Entre em contato."
+            />
+
+            <article className="legal-card contact-card">
+              <div className="contact-icon">✉️</div>
+              <h2>Estamos à disposição!</h2>
+              <p>
+                Sua opinião é importante para melhorar o SERÁ QUE RODA?.
+                Envie sua dúvida, sugestão ou relato de problema pelo nosso
+                endereço de e-mail.
+              </p>
+
+              <a
+                className="primary-btn contact-email"
+                href="mailto:seraqueroda7@gmail.com?subject=Contato%20-%20SER%C3%81%20QUE%20RODA%3F"
+              >
+                Enviar e-mail ↗
+              </a>
+
+              <p className="contact-address">
+                seraqueroda7@gmail.com
+              </p>
+
+              <small className="legal-note">
+                Ao clicar, seu aplicativo de e-mail será aberto para que
+                você possa escrever e enviar sua mensagem.
+              </small>
+            </article>
+          </section>
+        )}
       </main>
 
       <footer className="footer">
@@ -1862,6 +2037,13 @@ function App() {
         </button>
 
         <p>Seu universo gamer começa aqui.</p>
+
+        <nav className="footer-links" aria-label="Links institucionais">
+          <button onClick={() => navigate("about")}>Sobre nós</button>
+          <button onClick={() => navigate("privacy")}>Política de Privacidade</button>
+          <button onClick={() => navigate("contact")}>Contato</button>
+        </nav>
+
         <small>
           Links de afiliados podem gerar comissão. Preços e disponibilidade podem mudar.
         </small>
