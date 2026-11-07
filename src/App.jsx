@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import "./index.css";
 
 // ======================================================
@@ -417,6 +417,42 @@ function SectionTitle({ eyebrow, title, description }) {
       <span className="eyebrow">{eyebrow}</span>
       <h2>{title}</h2>
       <p>{description}</p>
+    </div>
+  );
+}
+
+function AdsenseBanner() {
+  useEffect(() => {
+    // O script global do AdSense deve estar no index.html.
+    // Aqui apenas inicializamos este bloco quando ele entra na página.
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (error) {
+      console.error("Erro ao carregar o anúncio do AdSense:", error);
+    }
+  }, []);
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        minHeight: 110,
+        margin: "28px 0",
+        boxSizing: "border-box",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden"
+      }}
+    >
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block", width: "100%" }}
+        data-ad-client="ca-pub-9871034891699329"
+        data-ad-slot="5367540924"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
     </div>
   );
 }
@@ -1372,7 +1408,7 @@ function App() {
               </div>
             </section>
 
-            <AdSlot label="Anúncio principal" />
+            <AdsenseBanner />
 
             <section className="quick-tools">
               {menu.slice(1).map(item => (
